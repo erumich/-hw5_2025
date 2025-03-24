@@ -1,0 +1,176 @@
+/* Default (Mobile) View*/
+
+/*keyframe logo animation*/
+
+#logo {
+    animation: logomove 5s;
+}
+@keyframes logomove {
+    0% {
+        width: 25px;
+        opacity: 0;
+    }
+    100% {
+        width: 475px;
+        opacity: 1;
+    }
+  }
+
+/*body font:Poppins (Google font) & backup, concrete background image & backup*/
+body{
+    font-family: 'Poppins', serif;
+    background-image: url("../images/concrete_seamless.png");
+    background-color: #f1f1f1;
+}
+
+
+/*centered logo (header tag, using flex)*/
+header{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/*nav links centered, stacked vertically (nav_links class, using flex)*/
+
+.nav_links{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/* Style links: same color even after they have been visited.*/
+/* ref: https://www.w3schools.com/css/css_link.asp */
+a:link{
+    color: blue;
+}
+    a:visited {
+    color: blue;
+}
+
+/*style header elements that are direct children of a card class.*/
+.card > header {
+    background: #288088;
+    border: 2px solid #45ADAD;
+    padding: 20px 0;
+    border-radius: 50px 50px 0 0;
+}
+
+/*fix corners: white angular corner does not show up behind rounded corner*/
+.card {
+    border-radius: 50px 50px 0 0;
+    height: 100%;
+}
+
+/* specify initial “size” of 450px for card class*/
+.card { flex-basis: 450px; }
+
+/*make pricing class centered horizontally and vertically (not take up width of screen).*/
+.pricing {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    }
+
+/*style images in the gallery class*/
+.gallery img {
+    border: 10px solid #50C7C7;
+    margin: 10px;
+    width: 300px;
+}
+
+/*edit gallery class layout using flex*/
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/*Desktop View (screen-size greater than 900px)*/
+
+@media screen and (min-width: 900px) {
+    /* Edit the css for the header tag (all instances) and the nav_links class to match our example using flex-properties. The logo should be as far to the left as possible and the links as far to the right as possible. Use flex properties, NOT position properties. */
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    /* .nav_links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+     } */
+
+
+    /* Edit the css for the pricing and card classes to match our example. Part of achieving this is by using a flex-property to specify a “size” of 275px. Notice that the elements do not have the same height, but do have the same width. */
+    .pricing {
+        justify-content: center;
+    }
+    .card {
+        flex-basis: 275px;
+    }
+}
+
+/*first header (logo & nav bar) always visible & remains visible at the top of the screen even as we scroll down.*/
+body > header {
+    position:fixed;
+    top: 0;
+    width: 100%;
+}
+
+main {
+    margin-top: 150px;
+}
+
+/*User prefers reduced motion.*/
+
+@media (prefers-reduced-motion: reduce) {
+
+/* logo animation off*/
+    #logo {
+        animation: none;
+    }
+}
+
+/*Print View*/
+@media print and (orientation: portrait) {
+
+/* body font Arial (backup: Helvetica)*/
+body {font-family: Arial, Helvetica;}
+
+/*remove background image*/
+body {background-image: none;
+    background-color: #f1f1f1;}
+
+
+/*nav_links elements evenly distributed in line with equal space around them */
+nav {
+    width: 100%;
+}
+.nav_links {
+    display:flex;
+    justify-content:space-around;
+}
+
+/* Edit the pricing class elements align along the bottom.*/
+.pricing {
+    flex-wrap: nowrap;
+    align-items: flex-end;
+}
+
+
+/*card element border and specify initial “size” of 325px*/
+.card {
+    border: 2px solid #45ADDD;
+    flex-basis: 325px;
+}
+
+/*No part of the gallery visible. */
+#gallery, .gallery {
+    display: none;
+}
+
+/*add the thumbs up entity after second list item in pricing cards.*/
+.card ul li:nth-child(2)::after{
+    content: "👍";
+}
+}
